@@ -47,7 +47,7 @@ def copy_paste():
     #print(f'Gain is        = ₹ {round(G, 2)}')
     wb_write.save("H:\Own\Bank.xlsx")
     if R > I:
-        print(f"Profit😎         = ₹{round(G, 2)}",)
+        print(f"Profit🙂         = ₹{round(G, 2)}",)
     else:
         print(f"Loss😔          = ₹{round(G, 2)}")
 
