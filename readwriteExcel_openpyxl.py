@@ -21,7 +21,7 @@ def copy_paste():
 
 	#Writing invested values into Bank excel
     x = 0
-    for j in range(32, 39):
+    for j in range(29, 36):
         write_value = sheet_write.cell(row=j, column=6)
         write_value.value = value_invested[x]
         x = x + 1
@@ -33,12 +33,24 @@ def copy_paste():
 
 	#Writing actual values into Bank excel
     x = 0
-    for j in range(32, 39):
+    for j in range(29, 36):
         write_value = sheet_write.cell(row=j, column=7)
         write_value.value = value_return[x]
         x = x + 1
 
-    print('\nBank sheet updated.....')
+	#Reading the XIRR the downloaded excel
+    XIRR = []
+    for i in range(3, 10):
+        XIRR.append(sheet_read.cell(row=i, column=13).value)
+				
+	#Writing the XIRR into Bank excel
+    x = 0
+    for j in range(29, 36):
+        write_value = sheet_write.cell(row=j, column=10)
+        write_value.value = XIRR[x]/100
+        x = x + 1
+		
+    print('\nBank sheet updated.....\n')
     print(f'Invested value  = {value_invested}')
     print(f'Returns         = {value_return}')
     I = sum(value_invested)
@@ -47,9 +59,11 @@ def copy_paste():
     #print(f'Gain is        = ₹ {round(G, 2)}')
     wb_write.save("H:\Own\Bank.xlsx")
     if R > I:
-        print(f"Profit🙂         = ₹{round(G, 2)}",)
+        print(f"Profit          = ₹{round(G, 2)}",)
     else:
-        print(f"Loss😔          = ₹{round(G, 2)}")
+        print(f"Loss            = ₹{round(G, 2)}")
+	
+	#print(XIRR)
 
 
 copy_paste()
